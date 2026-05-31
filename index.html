@@ -1,10 +1,448 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>وب‌سایت شخصی من</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matin Roosta | Academic Portfolio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f8fafc;
+color:#0f172a;
+line-height:1.8;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(255,255,255,.95);
+backdrop-filter:blur(10px);
+box-shadow:0 2px 15px rgba(0,0,0,.05);
+z-index:1000;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+}
+
+.logo{
+font-size:1.3rem;
+font-weight:700;
+color:#2563eb;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#334155;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:#2563eb;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+background:linear-gradient(135deg,#eff6ff,#ffffff);
+}
+
+.hero-content{
+display:grid;
+grid-template-columns:1fr 2fr;
+gap:60px;
+align-items:center;
+}
+
+.profile-img{
+width:280px;
+height:280px;
+border-radius:50%;
+object-fit:cover;
+border:6px solid white;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.hero-text h1{
+font-size:3.5rem;
+margin-bottom:10px;
+}
+
+.hero-text h2{
+font-size:1.3rem;
+color:#2563eb;
+font-weight:500;
+margin-bottom:20px;
+}
+
+.hero-text p{
+font-size:1.1rem;
+color:#475569;
+max-width:700px;
+}
+
+.btns{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:12px 24px;
+border-radius:10px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.primary{
+background:#2563eb;
+color:white;
+}
+
+.primary:hover{
+background:#1d4ed8;
+}
+
+.secondary{
+border:2px solid #2563eb;
+color:#2563eb;
+}
+
+.secondary:hover{
+background:#2563eb;
+color:white;
+}
+
+section{
+padding:100px 0;
+}
+
+.section-title{
+font-size:2.2rem;
+margin-bottom:40px;
+text-align:center;
+}
+
+.about{
+text-align:center;
+max-width:900px;
+margin:auto;
+font-size:1.1rem;
+color:#475569;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.pub{
+background:white;
+padding:25px;
+margin-bottom:20px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.pub h4{
+margin-bottom:8px;
+}
+
+footer{
+background:#0f172a;
+color:white;
+text-align:center;
+padding:40px 20px;
+}
+
+.socials{
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.socials a{
+color:white;
+text-decoration:none;
+}
+
+@media(max-width:768px){
+
+.hero-content{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.profile-img{
+margin:auto;
+width:220px;
+height:220px;
+}
+
+.hero-text h1{
+font-size:2.5rem;
+}
+
+.btns{
+justify-content:center;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-    <h1>سلام، من متین هستم</h1>
-    <p>این اولین وب‌سایت شخصی من است.</p>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">Matin Roosta</div>
+
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#research">Research</a>
+<a href="#publications">Publications</a>
+<a href="#teaching">Teaching</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+</div>
+</header>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-content">
+
+<img src="https://via.placeholder.com/500"
+class="profile-img"
+alt="Profile">
+
+<div class="hero-text">
+
+<h1>Matin Roosta</h1>
+
+<h2>PhD Candidate in Nursing | Faculty Member</h2>
+
+<p>
+Researcher in Critical Care Nursing, Emergency Medicine,
+Evidence-Based Practice, Systematic Reviews, and Healthcare Innovation.
+Dedicated to advancing nursing science through high-quality research and education.
+</p>
+
+<div class="btns">
+
+<a href="#" class="btn primary">Download CV</a>
+
+<a href="#publications" class="btn secondary">
+Publications
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="container">
+
+<h2 class="section-title">About Me</h2>
+
+<div class="about">
+
+I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My academic work focuses on critical care nursing, evidence-based healthcare, systematic reviews, meta-analysis, and emergency medicine education.
+
+</div>
+
+</div>
+
+</section>
+
+<section id="research">
+
+<div class="container">
+
+<h2 class="section-title">Research Interests</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Critical Care Nursing</h3>
+<p>ICU, CCU and advanced patient care research.</p>
+</div>
+
+<div class="card">
+<h3>Emergency Medicine</h3>
+<p>Prehospital care and emergency response systems.</p>
+</div>
+
+<div class="card">
+<h3>Systematic Reviews</h3>
+<p>Evidence synthesis and knowledge translation.</p>
+</div>
+
+<div class="card">
+<h3>Artificial Intelligence</h3>
+<p>AI applications in healthcare and nursing.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="publications">
+
+<div class="container">
+
+<h2 class="section-title">Selected Publications</h2>
+
+<div class="pub">
+<h4>Title of Your First Article</h4>
+<p>Journal Name • 2025</p>
+</div>
+
+<div class="pub">
+<h4>Title of Your Second Article</h4>
+<p>Journal Name • 2024</p>
+</div>
+
+<div class="pub">
+<h4>Title of Your Third Article</h4>
+<p>Journal Name • 2023</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="teaching">
+
+<div class="container">
+
+<h2 class="section-title">Teaching</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>ICU Nursing</h3>
+</div>
+
+<div class="card">
+<h3>CCU Nursing</h3>
+</div>
+
+<div class="card">
+<h3>Dialysis Nursing</h3>
+</div>
+
+<div class="card">
+<h3>Emergency Care</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+<h2 class="section-title">Contact</h2>
+
+<div class="about">
+
+<p>Email: your-email@university.edu</p>
+
+<div class="socials">
+
+<a href="#">Google Scholar</a>
+<a href="#">ORCID</a>
+<a href="#">ResearchGate</a>
+<a href="#">LinkedIn</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2025 Matin Roosta. All Rights Reserved.
+</p>
+
+</footer>
+
 </body>
 </html>
