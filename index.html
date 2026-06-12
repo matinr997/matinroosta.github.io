@@ -79,8 +79,8 @@ background:linear-gradient(135deg,#eff6ff,#ffffff);
 
 .hero-content{
 display:grid;
-grid-template-columns:1fr 2fr;
-gap:60px;
+grid-template-columns:1fr auto 2fr;
+gap:40px;
 align-items:center;
 }
 
@@ -91,6 +91,25 @@ border-radius:50%;
 object-fit:cover;
 border:6px solid white;
 box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.profile-logos{
+display:flex;
+flex-direction:column;
+gap:10px;
+align-items:center;
+justify-content:center;
+}
+
+.profile-logos img{
+width:60px;
+height:60px;
+object-fit:contain;
+transition:.3s;
+}
+
+.profile-logos img:hover{
+transform:scale(1.1);
 }
 
 .hero-text h1{
@@ -217,7 +236,7 @@ color:white;
 text-decoration:none;
 }
 
-@media(max-width:768px){
+@media(max-width:900px){
 
 .hero-content{
 grid-template-columns:1fr;
@@ -228,6 +247,11 @@ text-align:center;
 margin:auto;
 width:220px;
 height:220px;
+}
+
+.profile-logos{
+flex-direction:row;
+margin:20px auto;
 }
 
 .hero-text h1{
@@ -275,6 +299,18 @@ display:none;
 <img src="https://via.placeholder.com/500"
 class="profile-img"
 alt="Profile">
+
+<div class="profile-logos">
+
+<a href="https://scholar.google.com/citations?user=ZGdhd8QAAAAJ&hl=en" target="_blank" title="Google Scholar">
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" alt="Google Scholar">
+</a>
+
+<a href="#" target="_blank" title="Scopus">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Scopus_logo_2019.svg" alt="Scopus">
+</a>
+
+</div>
 
 <div class="hero-text">
 
