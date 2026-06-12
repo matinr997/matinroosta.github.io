@@ -15,8 +15,8 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-scroll-behavior:smooth;
 font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
@@ -34,10 +34,11 @@ margin:auto;
 header{
 position:fixed;
 top:0;
+left:0;
 width:100%;
 background:rgba(255,255,255,.95);
-backdrop-filter:blur(10px);
-box-shadow:0 2px 15px rgba(0,0,0,.05);
+backdrop-filter:blur(12px);
+box-shadow:0 2px 20px rgba(0,0,0,.05);
 z-index:1000;
 }
 
@@ -49,7 +50,7 @@ padding:20px 0;
 }
 
 .logo{
-font-size:1.3rem;
+font-size:1.4rem;
 font-weight:700;
 color:#2563eb;
 }
@@ -75,22 +76,65 @@ min-height:100vh;
 display:flex;
 align-items:center;
 background:linear-gradient(135deg,#eff6ff,#ffffff);
+padding-top:80px;
 }
 
 .hero-content{
 display:grid;
 grid-template-columns:1fr 2fr;
-gap:60px;
+gap:70px;
 align-items:center;
 }
 
+.profile-container{
+position:relative;
+display:flex;
+justify-content:center;
+}
+
 .profile-img{
-width:280px;
-height:280px;
+width:300px;
+height:300px;
 border-radius:50%;
 object-fit:cover;
-border:6px solid white;
+border:8px solid white;
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.scholar-float{
+position:absolute;
+right:20px;
+bottom:40px;
+
+width:75px;
+height:75px;
+
+background:white;
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
 box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+animation:float 3s ease-in-out infinite;
+transition:.3s;
+}
+
+.scholar-float:hover{
+transform:scale(1.15);
+}
+
+.scholar-float img{
+width:42px;
+height:42px;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
 .hero-text h1{
@@ -100,8 +144,8 @@ margin-bottom:10px;
 
 .hero-text h2{
 font-size:1.3rem;
-color:#2563eb;
 font-weight:500;
+color:#2563eb;
 margin-bottom:20px;
 }
 
@@ -119,8 +163,8 @@ flex-wrap:wrap;
 }
 
 .btn{
-padding:12px 24px;
-border-radius:10px;
+padding:14px 28px;
+border-radius:12px;
 text-decoration:none;
 font-weight:600;
 transition:.3s;
@@ -150,15 +194,15 @@ padding:100px 0;
 }
 
 .section-title{
-font-size:2.2rem;
+font-size:2.3rem;
 margin-bottom:40px;
 text-align:center;
 }
 
 .about{
-text-align:center;
 max-width:900px;
 margin:auto;
+text-align:center;
 font-size:1.1rem;
 color:#475569;
 }
@@ -178,7 +222,7 @@ transition:.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 }
 
 .card h3{
@@ -190,25 +234,21 @@ background:white;
 padding:25px;
 margin-bottom:20px;
 border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.05);
-}
-
-.pub h4{
-margin-bottom:8px;
+box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
 footer{
 background:#0f172a;
 color:white;
 text-align:center;
-padding:40px 20px;
+padding:40px;
 }
 
 .socials{
 margin-top:20px;
 display:flex;
 justify-content:center;
-gap:20px;
+gap:25px;
 flex-wrap:wrap;
 }
 
@@ -225,7 +265,6 @@ text-align:center;
 }
 
 .profile-img{
-margin:auto;
 width:220px;
 height:220px;
 }
@@ -234,63 +273,23 @@ height:220px;
 font-size:2.5rem;
 }
 
-.btns{
-justify-content:center;
-}
-
 .nav-links{
 display:none;
 }
 
-}
-.profile-wrapper{
-position:relative;
-display:inline-block;
-}
-
-.scholar-badge{
-position:absolute;
-right:-15px;
-bottom:25px;
-
-width:70px;
-height:70px;
-border-radius:50%;
-
-background:#fff;
-padding:12px;
-
-display:flex;
-align-items:center;
+.btns{
 justify-content:center;
-
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-transition:all .3s ease;
-animation:float 3s ease-in-out infinite;
 }
 
-.scholar-badge:hover{
-transform:scale(1.1);
+.scholar-float{
+right:0;
+bottom:10px;
+width:65px;
+height:65px;
 }
 
-.scholar-badge img{
-width:100%;
-height:100%;
-object-fit:contain;
 }
 
-@keyframes float{
-0%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-10px);
-}
-100%{
-transform:translateY(0px);
-}
-}
 </style>
 </head>
 
@@ -299,6 +298,7 @@ transform:translateY(0px);
 <header>
 <div class="container">
 <nav>
+
 <div class="logo">Matin Roosta</div>
 
 <div class="nav-links">
@@ -319,9 +319,22 @@ transform:translateY(0px);
 
 <div class="hero-content">
 
-<img src="https://via.placeholder.com/500"
+<div class="profile-container">
+
+<img src="https://via.placeholder.com/600"
 class="profile-img"
 alt="Profile">
+
+<a href="https://scholar.google.com/"
+target="_blank"
+class="scholar-float">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg"
+alt="Scholar">
+
+</a>
+
+</div>
 
 <div class="hero-text">
 
@@ -331,13 +344,15 @@ alt="Profile">
 
 <p>
 Researcher in Critical Care Nursing, Emergency Medicine,
-Evidence-Based Practice, Systematic Reviews, and Healthcare Innovation.
-Dedicated to advancing nursing science through high-quality research and education.
+Evidence-Based Practice, Systematic Reviews, Meta-analysis,
+and Healthcare Innovation.
 </p>
 
 <div class="btns">
 
-<a href="#" class="btn primary">Download CV</a>
+<a href="#" class="btn primary">
+Google Scholar
+</a>
 
 <a href="#publications" class="btn secondary">
 Publications
@@ -361,7 +376,7 @@ Publications
 
 <div class="about">
 
-I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My academic work focuses on critical care nursing, evidence-based healthcare, systematic reviews, meta-analysis, and emergency medicine education.
+I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My research interests include Critical Care Nursing, Emergency Medicine, Evidence-Based Healthcare, Systematic Reviews, Meta-analysis, and AI in Healthcare.
 
 </div>
 
@@ -384,17 +399,17 @@ I am a PhD candidate in Nursing and a faculty member in the Department of Prehos
 
 <div class="card">
 <h3>Emergency Medicine</h3>
-<p>Prehospital care and emergency response systems.</p>
+<p>Prehospital emergency care and response systems.</p>
 </div>
 
 <div class="card">
 <h3>Systematic Reviews</h3>
-<p>Evidence synthesis and knowledge translation.</p>
+<p>Evidence synthesis and methodological research.</p>
 </div>
 
 <div class="card">
 <h3>Artificial Intelligence</h3>
-<p>AI applications in healthcare and nursing.</p>
+<p>AI applications in nursing and healthcare.</p>
 </div>
 
 </div>
@@ -410,17 +425,17 @@ I am a PhD candidate in Nursing and a faculty member in the Department of Prehos
 <h2 class="section-title">Selected Publications</h2>
 
 <div class="pub">
-<h4>Title of Your First Article</h4>
+<h4>Your Article Title</h4>
 <p>Journal Name • 2025</p>
 </div>
 
 <div class="pub">
-<h4>Title of Your Second Article</h4>
+<h4>Your Article Title</h4>
 <p>Journal Name • 2024</p>
 </div>
 
 <div class="pub">
-<h4>Title of Your Third Article</h4>
+<h4>Your Article Title</h4>
 <p>Journal Name • 2023</p>
 </div>
 
@@ -436,21 +451,10 @@ I am a PhD candidate in Nursing and a faculty member in the Department of Prehos
 
 <div class="cards">
 
-<div class="card">
-<h3>ICU Nursing</h3>
-</div>
-
-<div class="card">
-<h3>CCU Nursing</h3>
-</div>
-
-<div class="card">
-<h3>Dialysis Nursing</h3>
-</div>
-
-<div class="card">
-<h3>Emergency Care</h3>
-</div>
+<div class="card"><h3>ICU Nursing</h3></div>
+<div class="card"><h3>CCU Nursing</h3></div>
+<div class="card"><h3>Dialysis Nursing</h3></div>
+<div class="card"><h3>Emergency Care</h3></div>
 
 </div>
 
@@ -484,11 +488,7 @@ I am a PhD candidate in Nursing and a faculty member in the Department of Prehos
 </section>
 
 <footer>
-
-<p>
-© 2025 Matin Roosta. All Rights Reserved.
-</p>
-
+<p>© 2026 Matin Roosta. All Rights Reserved.</p>
 </footer>
 
 </body>
