@@ -323,7 +323,6 @@
             color: #2548ff;
         }
 
-        /* Abstract Hidden State */
         .pub-abstract {
             max-height: 0;
             opacity: 0;
@@ -346,9 +345,8 @@
             margin-bottom: 0;
         }
 
-        /* Abstract Visible State on Hover */
         .pub:hover .pub-abstract {
-            max-height: 1500px; /* Enough space for long abstract */
+            max-height: 1500px;
             opacity: 1;
             margin-top: 20px;
             padding-top: 20px;
@@ -388,7 +386,9 @@
             border-color: #2548ff;
         }
 
-        /* ----- Teaching Section ----- */
+        /* ========================================= */
+        /* ----- Teaching Section (Motion Graphics) - */
+        /* ========================================= */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -397,22 +397,94 @@
 
         .card {
             background: #fff;
-            padding: 40px 30px;
+            padding: 50px 30px;
             border: 2px solid #111;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-align: center;
+            position: relative;
+            overflow: hidden; 
+            z-index: 1;
+            cursor: default;
         }
 
-        .card:hover {
-            background: #111;
-            color: #fff;
-            transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0px #2548ff;
+        /* لایه متحرک پس‌زمینه */
+        .card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.04; 
+            transition: all 0.5s ease;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .card h3 {
             font-size: 1.3rem;
             font-weight: 700;
+            color: #111;
+            transition: color 0.4s;
+        }
+
+        .card:hover {
+            background: #111; 
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0px #2548ff;
+        }
+
+        .card:hover h3 {
+            color: #fff; 
+        }
+
+        .card:hover .card-bg {
+            opacity: 0.15; 
+            filter: invert(1); 
+        }
+
+        /* --- تصاویر SVG اختصاصی و انیمیشن آنها --- */
+
+        /* 1. CCU (ضربان قلب) */
+        .bg-ccu {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' stroke='%23111' stroke-width='1.5' fill='none'%3E%3Cpolyline points='0,25 20,25 25,10 35,45 45,5 55,35 60,25 100,25'/%3E%3C/svg%3E");
+            background-size: 150px;
+        }
+        @keyframes heartbeatMotion {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.1) translateX(-10px); }
+            100% { transform: scale(1) translateX(0); }
+        }
+        .card:hover .bg-ccu {
+            animation: heartbeatMotion 2s infinite ease-in-out;
+        }
+
+        /* 2. Medical Emergencies (پالس اورژانس) */
+        .bg-emergency {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' stroke='%23111' stroke-width='2' fill='none'%3E%3Ccircle cx='50' cy='50' r='20'/%3E%3Ccircle cx='50' cy='50' r='35' stroke-dasharray='5,5'/%3E%3Ccircle cx='50' cy='50' r='50' stroke-dasharray='10,10'/%3E%3C/svg%3E");
+            background-size: 180px;
+        }
+        @keyframes pulseMotion {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.5; }
+        }
+        .card:hover .bg-emergency {
+            animation: pulseMotion 2s infinite linear;
+        }
+
+        /* 3. Trauma Care (ستاره حیات) */
+        .bg-trauma {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%23111'%3E%3Crect x='42' y='10' width='16' height='80' rx='2'/%3E%3Crect x='10' y='42' width='80' height='16' rx='2'/%3E%3Cpath d='M25,25 L75,75 M75,25 L25,75' stroke='%23111' stroke-width='16' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-size: 140px;
+        }
+        @keyframes rotateMotion {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(15deg) scale(1.05); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        .card:hover .bg-trauma {
+            animation: rotateMotion 4s infinite ease-in-out;
         }
 
         /* ----- Footer ----- */
@@ -635,7 +707,6 @@
                 <div class="pub">
                     <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
                     
-                    <!-- Structured Abstract -->
                     <div class="pub-abstract">
                         <p><strong>Abstract</strong></p>
                         <p><strong>Objective.</strong> To examine the impact of a self-care program designed using Peplau's theory on adherence and self-care in elderly diabetic patients.</p>
@@ -660,14 +731,27 @@
         </div>
     </section>
 
-    <!-- Teaching Section -->
+    <!-- Teaching Section (Motion Graphics) -->
     <section id="teaching">
         <div class="container">
             <h2 class="section-title">Teaching</h2>
             <div class="cards">
-                <div class="card"><h3>Intensive Nursing care in CCU</h3></div>
-                <div class="card"><h3>Prehospital Medical Emergencies</h3></div>
-                <div class="card"><h3>Prehospital Trauma Care</h3></div>
+                
+                <div class="card">
+                    <div class="card-bg bg-ccu"></div>
+                    <h3>Intensive Nursing care in CCU</h3>
+                </div>
+                
+                <div class="card">
+                    <div class="card-bg bg-emergency"></div>
+                    <h3>Prehospital Medical Emergencies</h3>
+                </div>
+                
+                <div class="card">
+                    <div class="card-bg bg-trauma"></div>
+                    <h3>Prehospital Trauma Care</h3>
+                </div>
+
             </div>
         </div>
     </section>
@@ -689,7 +773,6 @@
         <div class="footer-col social-col">
             <span class="footer-heading">ELSEWHERE</span>
             
-            <!-- Email -->
             <a href="mailto:matinr1997@gmail.com">
                 <svg viewBox="0 0 24 24" fill="#111" width="20" height="20"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 Email &#8599;
