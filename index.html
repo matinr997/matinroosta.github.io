@@ -388,21 +388,46 @@
         }
 
         /* ----- واکنش‌گرا (موبایل) ----- */
+        /* ----- واکنش‌گرا (موبایل) تنظیمات بهینه شده ----- */
         @media (max-width: 900px) {
-            header { padding: 20px; }
+            header { padding: 15px 20px; }
             .nav-links { display: none; } 
+            
+            /* تنظیمات باکس اصلی متن */
             .hero { flex-direction: column; height: auto; padding-top: 70px; }
-            .content-left { padding: 60px 20px; border-right: none; border-bottom: 2px solid #111; }
-            h1 { font-size: 3rem; }
-            .image-right { height: 400px; }
-            .container { padding: 60px 20px; }
-            .research-item { flex-direction: column; padding: 50px 20px; gap: 20px; }
+            .content-left { padding: 40px 20px; border-right: none; border-bottom: 2px solid #111; }
+            
+            /* سایز فونت ها برای گوشی */
+            h1 { font-size: 2.8rem; margin-bottom: 15px; }
+            p.description { font-size: 1rem; margin-bottom: 30px; }
+            
+            /* دکمه ها در گوشی زیر هم قرار میگیرند و تمام عرض میشوند */
+            .buttons { flex-direction: column; width: 100%; gap: 10px; }
+            .btn { width: 100%; }
+            
+            /* حل مشکل غیب شدن عکس در گوشی */
+            .image-right { 
+                width: 100%; 
+                min-height: 450px; /* ارتفاع عکس در گوشی */
+                background-position: center 20%; /* تنظیم جایگاه صورت در عکس */
+            }
+            
+            /* فاصله های سایر بخش ها در گوشی */
+            .container { padding: 40px 20px; }
+            .section-title { font-size: 2.2rem; margin-bottom: 30px; }
+            
+            /* تنظیمات لیست پژوهش ها */
+            .research-item { flex-direction: column; padding: 40px 20px; gap: 15px; }
             .research-left h3 { font-size: 1.8rem; }
-            footer { flex-direction: column; padding: 50px 20px; gap: 40px; }
-        }
-    </style>
-</head>
-<body>
+            .research-right p { font-size: 1rem; margin-bottom: 15px;}
+            .tag { font-size: 0.85rem; padding: 8px 15px; }
+            
+            /* مقالات و فوتر */
+            .pub { padding: 25px 20px; }
+            .pub h4 { font-size: 1.1rem; }
+            footer { flex-direction: column; padding: 40px 20px; gap: 40px; }
+            .brand-col p { font-size: 1rem; }
+        }<body>
 
     <!-- هدر -->
     <header>
