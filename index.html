@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matin Roosta | Academic Portfolio</title>
     
-    <!-- اضافه کردن فونت گوگل (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <!-- فونت گوگل (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -21,6 +21,7 @@
             background-color: #ffffff;
             color: #111;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
         /* ----- هدر و منو ----- */
@@ -29,7 +30,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.98);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -63,14 +64,14 @@
             color: #111;
         }
 
-        /* ----- بخش اصلی (دو تکه مشابه عکس) ----- */
+        /* ----- بخش اصلی (Hero) ----- */
         .hero {
             display: flex;
             height: 100vh;
-            padding-top: 80px; /* فضای منوی ثابت */
+            padding-top: 80px; 
+            border-bottom: 2px solid #111;
         }
 
-        /* سمت چپ (متن) */
         .content-left {
             flex: 1;
             padding: 80px 80px 80px 50px;
@@ -107,12 +108,11 @@
         p.description {
             font-size: 1.15rem;
             color: #444;
-            line-height: 1.6;
+            line-height: 1.8;
             max-width: 90%;
             margin-bottom: 40px;
         }
 
-        /* دکمه ها */
         .buttons {
             display: flex;
             gap: 15px;
@@ -156,7 +156,6 @@
             background-color: #f0f0f0;
         }
 
-        /* سمت راست (عکس) */
         .image-right {
             flex: 1;
             display: flex;
@@ -176,35 +175,124 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
         }
 
-        /* ----- استایل بخش های پایینی سایت ----- */
-        section:not(.hero) {
-            padding: 100px 50px;
-            border-bottom: 2px solid #111;
-        }
-
+        /* ----- استایل کلی سکشن ها ----- */
         .container {
             max-width: 1200px;
             margin: auto;
+            padding: 100px 50px;
         }
 
+        /* ----- بخش علایق پژوهشی (مدل عکس جدید) ----- */
+        #research {
+            padding: 0;
+        }
+
+        .research-item {
+            display: flex;
+            padding: 80px 50px;
+            border-bottom: 1px solid #ddd;
+            gap: 50px;
+            transition: background-color 0.4s;
+        }
+
+        .research-item:hover {
+            background-color: #fafafa;
+        }
+
+        .research-left {
+            flex: 1;
+        }
+
+        .research-num {
+            color: #2548ff;
+            font-family: monospace;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .research-left h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .research-right {
+            flex: 2;
+        }
+
+        .research-right p {
+            font-size: 1.15rem;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+
+        .keyword-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            border: 2px solid #111;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .tag:hover {
+            background-color: #111;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ----- سایر بخش ها (مقالات و تدریس) ----- */
         .section-title {
             font-size: 3rem;
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 50px;
+            border-bottom: 2px solid #111;
+            padding-bottom: 20px;
+            display: inline-block;
         }
 
-        .about-text {
-            font-size: 1.2rem;
-            color: #333;
-            max-width: 900px;
-            line-height: 1.8;
+        /* مقالات */
+        .pub {
+            border: 2px solid #111;
+            padding: 35px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            background: #fff;
+        }
+        
+        .pub:hover {
+            border-left: 8px solid #2548ff;
+            transform: translateX(5px);
         }
 
-        /* کارت ها (طراحی مینیمال با خطوط مشکی) */
+        .pub h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .pub p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* کارت های تدریس */
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
@@ -213,87 +301,97 @@
             padding: 40px 30px;
             border: 2px solid #111;
             transition: all 0.3s;
+            text-align: center;
         }
 
         .card:hover {
             background: #111;
             color: #fff;
             transform: translate(-5px, -5px);
-            box-shadow: 5px 5px 0px #2548ff; /* افکت هاور با رنگ آبی عکس */
+            box-shadow: 5px 5px 0px #2548ff;
         }
 
         .card h3 {
             font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 800;
+            font-weight: 700;
         }
 
-        .card p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* مقالات */
-        .pub {
-            border: 2px solid #111;
-            padding: 30px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-        }
-        
-        .pub:hover {
-            border-left: 8px solid #2548ff;
-        }
-
-        .pub h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .pub p {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        /* فوتر */
+        /* ----- فوتر جدید (مشابه عکس دوم) ----- */
         footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 50px;
-        }
-
-        .socials {
-            margin-top: 25px;
+            border-top: 2px solid #111;
+            padding: 80px 50px;
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 50px;
+            background-color: #fff;
         }
 
-        .socials a {
-            color: white;
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .brand-col {
+            flex: 2;
+        }
+
+        .brand-col h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-col p {
+            color: #555;
+            font-size: 1.1rem;
+            max-width: 400px;
+        }
+
+        .nav-col, .social-col {
+            flex: 1;
+        }
+
+        .footer-heading {
+            color: #2548ff;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: #111;
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px solid transparent;
-            transition: 0.3s;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .socials a:hover {
-            border-bottom: 1px solid white;
+        .footer-col a:hover {
+            color: #2548ff;
         }
 
         /* ----- واکنش‌گرا (موبایل) ----- */
         @media (max-width: 900px) {
             header { padding: 20px; }
-            .nav-links { display: none; } /* مخفی کردن منو در موبایل */
+            .nav-links { display: none; } 
             .hero { flex-direction: column; height: auto; padding-top: 70px; }
             .content-left { padding: 60px 20px; border-right: none; border-bottom: 2px solid #111; }
             h1 { font-size: 3rem; }
             .image-right { height: 400px; }
-            section:not(.hero) { padding: 60px 20px; }
-            .section-title { font-size: 2.2rem; }
+            .container { padding: 60px 20px; }
+            
+            .research-item { flex-direction: column; padding: 50px 20px; gap: 20px; }
+            .research-left h3 { font-size: 1.8rem; }
+            
+            footer { flex-direction: column; padding: 50px 20px; gap: 40px; }
         }
     </style>
 </head>
@@ -303,11 +401,9 @@
     <header>
         <div class="logo">Matin Roosta</div>
         <nav class="nav-links">
-            <a href="#about">About</a>
             <a href="#research">Research</a>
             <a href="#publications">Publications</a>
             <a href="#teaching">Teaching</a>
-            <a href="#contact">Contact</a>
         </nav>
     </header>
 
@@ -318,7 +414,6 @@
         <div class="content-left">
             <div class="badge">PhD Candidate · Faculty Member</div>
             
-            <!-- عنوان اصلی - مشابه عکس با رنگ آبی -->
             <h1>The science of <span class="highlight">care</span><br>and evidence.</h1>
             
             <p class="description">
@@ -326,7 +421,6 @@
             </p>
             
             <div class="buttons">
-                <!-- لینک اسکولار شما اینجا قرار داده شد -->
                 <a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ" target="_blank" class="btn btn-primary">
                     Google Scholar <span>&rarr;</span>
                 </a>
@@ -335,63 +429,89 @@
         </div>
 
         <!-- نیمه سمت راست (عکس) -->
-        <div class="image-right">
-            <!-- عکس از طریق CSS (کلاس image-right) اعمال شده و سیاه و سفید می شود -->
-        </div>
+        <div class="image-right"></div>
 
     </section>
 
-    <!-- بخش درباره من -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <p class="about-text">
-                I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My research interests include Critical Care Nursing, Emergency Medicine, Evidence-Based Healthcare, Systematic Reviews, Meta-analysis, and AI in Healthcare.
-            </p>
-        </div>
-    </section>
-
-    <!-- بخش پژوهش ها -->
+    <!-- بخش پژوهش ها (طراحی جدید) -->
     <section id="research">
-        <div class="container">
-            <h2 class="section-title">Research Interests</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Critical Care Nursing</h3>
-                    <p>ICU, CCU and advanced patient care research.</p>
-                </div>
-                <div class="card">
-                    <h3>Emergency Medicine</h3>
-                    <p>Prehospital emergency care and response systems.</p>
-                </div>
-                <div class="card">
-                    <h3>Systematic Reviews</h3>
-                    <p>Evidence synthesis and methodological research.</p>
-                </div>
-                <div class="card">
-                    <h3>Artificial Intelligence</h3>
-                    <p>AI applications in nursing and healthcare.</p>
+        
+        <!-- آیتم 1 -->
+        <div class="research-item">
+            <div class="research-left">
+                <span class="research-num">01 / CARE</span>
+                <h3>Nursing Care</h3>
+            </div>
+            <div class="research-right">
+                <p>Focusing on the advancement of critical and emergency patient management. I investigate protocols and practices that enhance recovery outcomes, optimize clinical workflows, and elevate the standard of evidence-based nursing care in high-stress environments.</p>
+                <div class="keyword-tags">
+                    <span class="tag">Critical Care</span>
+                    <span class="tag">Clinical Workflows</span>
+                    <span class="tag">Evidence-Based Practice</span>
                 </div>
             </div>
         </div>
+
+        <!-- آیتم 2 -->
+        <div class="research-item">
+            <div class="research-left">
+                <span class="research-num">02 / GERIATRICS</span>
+                <h3>Older Adults</h3>
+            </div>
+            <div class="research-right">
+                <p>Studying the specific healthcare needs of the aging population. My research aims to improve quality of life, self-care education, and treatment adherence among elderly patients, addressing the unique physiological and psychological challenges they face.</p>
+                <div class="keyword-tags">
+                    <span class="tag">Gerontology</span>
+                    <span class="tag">Quality of Life</span>
+                    <span class="tag">Healthy Aging</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- آیتم 3 -->
+        <div class="research-item">
+            <div class="research-left">
+                <span class="research-num">03 / TECHNOLOGY</span>
+                <h3>Artificial Intelligence</h3>
+            </div>
+            <div class="research-right">
+                <p>Exploring the intersection of modern technology and healthcare. I analyze how AI applications, machine learning algorithms, and health informatics can assist nurses in decision-making, predictive care, and early diagnosis.</p>
+                <div class="keyword-tags">
+                    <span class="tag">Health Informatics</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Predictive Care</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- آیتم 4 -->
+        <div class="research-item">
+            <div class="research-left">
+                <span class="research-num">04 / MANAGEMENT</span>
+                <h3>Chronic Disease</h3>
+            </div>
+            <div class="research-right">
+                <p>Investigating long-term care strategies for patients with chronic conditions such as diabetes. I evaluate the effectiveness of educational theories and self-care programs in empowering patients to manage their health and adhere to treatments.</p>
+                <div class="keyword-tags">
+                    <span class="tag">Diabetes Management</span>
+                    <span class="tag">Self-Care Programs</span>
+                    <span class="tag">Patient Empowerment</span>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- بخش مقالات -->
     <section id="publications">
         <div class="container">
-            <h2 class="section-title">Selected Publications</h2>
+            <h2 class="section-title">Research Papers</h2>
+            
             <div class="pub">
-                <h4>Your Article Title</h4>
-                <p>Journal Name • 2025</p>
+                <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
+                <p>DOI: 10.17533/udea.iee.v43n1e05</p>
             </div>
-            <div class="pub">
-                <h4>Your Article Title</h4>
-                <p>Journal Name • 2024</p>
-            </div>
-            <div class="pub">
-                <h4>Your Article Title</h4>
-                <p>Journal Name • 2023</p>
-            </div>
+            
         </div>
     </section>
 
@@ -400,34 +520,36 @@
         <div class="container">
             <h2 class="section-title">Teaching</h2>
             <div class="cards">
-                <div class="card"><h3>ICU Nursing</h3></div>
-                <div class="card"><h3>CCU Nursing</h3></div>
-                <div class="card"><h3>Dialysis Nursing</h3></div>
-                <div class="card"><h3>Emergency Care</h3></div>
+                <div class="card"><h3>Intensive Nursing care in CCU</h3></div>
+                <div class="card"><h3>Prehospital Medical Emergencies</h3></div>
+                <div class="card"><h3>Prehospital Trauma Care</h3></div>
             </div>
         </div>
     </section>
 
-    <!-- بخش تماس و فوتر -->
-    <section id="contact" style="border-bottom: none;">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="about-text">
-                <p style="font-weight: 600;">Email: your-email@university.edu</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- فوتر جدید (مشابه عکس دوم) -->
     <footer>
-        <p>© 2024 Matin Roosta. All Rights Reserved.</p>
-        <div class="socials">
-            <a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ" target="_blank">Google Scholar</a>
-            <a href="#">ORCID</a>
-            <a href="#">ResearchGate</a>
-            <a href="#">LinkedIn</a>
+        <div class="footer-col brand-col">
+            <h2>MATIN ROOSTA</h2>
+            <p>PhD Candidate in Nursing and Faculty Member at the Department of Prehospital Emergency Medicine.</p>
+        </div>
+        
+        <div class="footer-col nav-col">
+            <span class="footer-heading">NAVIGATE</span>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#teaching">Teaching</a>
+        </div>
+        
+        <div class="footer-col social-col">
+            <span class="footer-heading">ELSEWHERE</span>
+            <!-- لینک های خود را در قسمت href جایگزین # کنید -->
+            <a href="#" target="_blank">LinkedIn &#8599;</a>
+            <a href="#" target="_blank">YouTube &#8599;</a>
+            <a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ" target="_blank">Google Scholar &#8599;</a>
+            <a href="#" target="_blank">ORCID &#8599;</a>
         </div>
     </footer>
 
 </body>
 </html>
-
