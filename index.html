@@ -63,6 +63,24 @@
         nav a:hover {
             color: #111;
         }
+        .lang-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border: 2px solid #111;
+            border-radius: 50%;
+            color: #111;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .lang-toggle:hover {
+            background-color: #111;
+            color: #fff;
+        }
 
         /* ----- بخش اصلی (Hero) ----- */
         .hero {
@@ -451,11 +469,15 @@
     <!-- هدر -->
     <header>
         <div class="logo">Matin Roosta</div>
-        <nav class="nav-links">
-            <a href="research.html">Research</a>
-            <a href="#publications">Publications</a>
-            <a href="#teaching">Teaching</a>
-        </nav>
+        <div style="display: flex; align-items: center; gap: 30px;">
+            <nav class="nav-links">
+                <a href="research.html">Research</a>
+                <a href="#publications">Publications</a>
+                <a href="#teaching">Teaching</a>
+            </nav>
+            <!-- دکمه تغییر زبان -->
+            <a href="index-fa.html" class="lang-toggle" title="Persian">FA</a>
+        </div>
     </header>
 
     <!-- بخش اصلی (Hero) -->
