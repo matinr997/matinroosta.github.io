@@ -159,11 +159,21 @@
         /* سمت راست (عکس) */
         .image-right {
             flex: 1;
-            /* لینک عکس خودتان را در خط پایین جایگزین کنید */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-right::after {
+            content: "";
+            width: 65%; 
+            aspect-ratio: 1 / 1; 
             background-image: url('images/profile1.jpg'); 
             background-size: cover;
-            background-position: center center;
-            filter: grayscale(100%); /* سیاه و سفید کردن عکس */
+            background-position: center top;
+            border-radius: 16px; 
+            filter: grayscale(100%); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
         }
 
         /* ----- استایل بخش های پایینی سایت ----- */
