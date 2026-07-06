@@ -1,495 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matin Roosta | Academic Portfolio</title>
+    
+    <!-- اضافه کردن فونت گوگل (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-<title>Matin Roosta | Academic Portfolio</title>
+        body {
+            background-color: #ffffff;
+            color: #111;
+            overflow-x: hidden;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        /* ----- هدر و منو ----- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 50px;
+            border-bottom: 2px solid #111;
+            z-index: 1000;
+        }
 
-<style>
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #111;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-scroll-behavior:smooth;
-}
+        nav {
+            display: flex;
+            gap: 30px;
+        }
 
-body{
-background:#f8fafc;
-color:#0f172a;
-line-height:1.8;
-}
+        nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
+        nav a:hover {
+            color: #111;
+        }
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:rgba(255,255,255,.95);
-backdrop-filter:blur(12px);
-box-shadow:0 2px 20px rgba(0,0,0,.05);
-z-index:1000;
-}
+        /* ----- بخش اصلی (دو تکه مشابه عکس) ----- */
+        .hero {
+            display: flex;
+            height: 100vh;
+            padding-top: 80px; /* فضای منوی ثابت */
+        }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 0;
-}
+        /* سمت چپ (متن) */
+        .content-left {
+            flex: 1;
+            padding: 80px 80px 80px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 2px solid #111;
+        }
 
-.logo{
-font-size:1.4rem;
-font-weight:700;
-color:#2563eb;
-}
+        .badge {
+            background-color: #111;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 12px;
+            align-self: flex-start;
+            margin-bottom: 30px;
+        }
 
-.nav-links{
-display:flex;
-gap:25px;
-}
+        h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 25px;
+        }
 
-.nav-links a{
-text-decoration:none;
-color:#334155;
-font-weight:500;
-transition:.3s;
-}
+        h1 .highlight {
+            color: #2548ff;
+        }
 
-.nav-links a:hover{
-color:#2563eb;
-}
+        p.description {
+            font-size: 1.15rem;
+            color: #444;
+            line-height: 1.6;
+            max-width: 90%;
+            margin-bottom: 40px;
+        }
 
-.hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-background:linear-gradient(135deg,#eff6ff,#ffffff);
-padding-top:80px;
-}
+        /* دکمه ها */
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-.hero-content{
-display:grid;
-grid-template-columns:1fr 2fr;
-gap:70px;
-align-items:center;
-}
+        .btn {
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-.profile-container{
-position:relative;
-display:flex;
-justify-content:center;
-}
+        .btn-primary {
+            background-color: #111;
+            color: #fff;
+            border: 2px solid #111;
+        }
 
-.profile-img{
-width:300px;
-height:300px;
-border-radius:50%;
-object-fit:cover;
-border:8px solid white;
-box-shadow:0 15px 40px rgba(0,0,0,.15);
-}
+        .btn-primary:hover {
+            background-color: #333;
+        }
 
-.scholar-float{
-position:absolute;
-right:20px;
-bottom:40px;
+        .btn-primary span {
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
 
-width:75px;
-height:75px;
+        .btn-secondary {
+            background-color: transparent;
+            color: #111;
+            border: 2px solid #111;
+        }
 
-background:white;
-border-radius:50%;
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
 
-display:flex;
-justify-content:center;
-align-items:center;
+        /* سمت راست (عکس) */
+        .image-right {
+            flex: 1;
+            /* لینک عکس خودتان را در خط پایین جایگزین کنید */
+            background-image: url('https://images.unsplash.com/photo-1612349317150-e410f624c427?q=80&w=1000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center center;
+            filter: grayscale(100%); /* سیاه و سفید کردن عکس */
+        }
 
-box-shadow:0 10px 30px rgba(0,0,0,.15);
+        /* ----- استایل بخش های پایینی سایت ----- */
+        section:not(.hero) {
+            padding: 100px 50px;
+            border-bottom: 2px solid #111;
+        }
 
-animation:float 3s ease-in-out infinite;
-transition:.3s;
-}
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
 
-.scholar-float:hover{
-transform:scale(1.15);
-}
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 50px;
+        }
 
-.scholar-float img{
-width:42px;
-height:42px;
-}
+        .about-text {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 900px;
+            line-height: 1.8;
+        }
 
-@keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
-}
+        /* کارت ها (طراحی مینیمال با خطوط مشکی) */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
 
-.hero-text h1{
-font-size:3.5rem;
-margin-bottom:10px;
-}
+        .card {
+            background: #fff;
+            padding: 40px 30px;
+            border: 2px solid #111;
+            transition: all 0.3s;
+        }
 
-.hero-text h2{
-font-size:1.3rem;
-font-weight:500;
-color:#2563eb;
-margin-bottom:20px;
-}
+        .card:hover {
+            background: #111;
+            color: #fff;
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0px #2548ff; /* افکت هاور با رنگ آبی عکس */
+        }
 
-.hero-text p{
-font-size:1.1rem;
-color:#475569;
-max-width:700px;
-}
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
 
-.btns{
-margin-top:30px;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-}
+        .card p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
 
-.btn{
-padding:14px 28px;
-border-radius:12px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
+        /* مقالات */
+        .pub {
+            border: 2px solid #111;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .pub:hover {
+            border-left: 8px solid #2548ff;
+        }
 
-.primary{
-background:#2563eb;
-color:white;
-}
+        .pub h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
 
-.primary:hover{
-background:#1d4ed8;
-}
+        .pub p {
+            color: #555;
+            font-size: 0.95rem;
+        }
 
-.secondary{
-border:2px solid #2563eb;
-color:#2563eb;
-}
+        /* فوتر */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
 
-.secondary:hover{
-background:#2563eb;
-color:white;
-}
+        .socials {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-section{
-padding:100px 0;
-}
+        .socials a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
 
-.section-title{
-font-size:2.3rem;
-margin-bottom:40px;
-text-align:center;
-}
+        .socials a:hover {
+            border-bottom: 1px solid white;
+        }
 
-.about{
-max-width:900px;
-margin:auto;
-text-align:center;
-font-size:1.1rem;
-color:#475569;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,.05);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-}
-
-.card h3{
-margin-bottom:10px;
-}
-
-.pub{
-background:white;
-padding:25px;
-margin-bottom:20px;
-border-radius:15px;
-box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-footer{
-background:#0f172a;
-color:white;
-text-align:center;
-padding:40px;
-}
-
-.socials{
-margin-top:20px;
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
-}
-
-.socials a{
-color:white;
-text-decoration:none;
-}
-
-@media(max-width:768px){
-
-.hero-content{
-grid-template-columns:1fr;
-text-align:center;
-}
-
-.profile-img{
-width:220px;
-height:220px;
-}
-
-.hero-text h1{
-font-size:2.5rem;
-}
-
-.nav-links{
-display:none;
-}
-
-.btns{
-justify-content:center;
-}
-
-.scholar-float{
-right:0;
-bottom:10px;
-width:65px;
-height:65px;
-}
-
-}
-
-</style>
+        /* ----- واکنش‌گرا (موبایل) ----- */
+        @media (max-width: 900px) {
+            header { padding: 20px; }
+            .nav-links { display: none; } /* مخفی کردن منو در موبایل */
+            .hero { flex-direction: column; height: auto; padding-top: 70px; }
+            .content-left { padding: 60px 20px; border-right: none; border-bottom: 2px solid #111; }
+            h1 { font-size: 3rem; }
+            .image-right { height: 400px; }
+            section:not(.hero) { padding: 60px 20px; }
+            .section-title { font-size: 2.2rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="container">
-<nav>
-
-<div class="logo">Matin Roosta</div>
-
-<div class="nav-links">
-<a href="#about">About</a>
-<a href="#research">Research</a>
-<a href="#publications">Publications</a>
-<a href="#teaching">Teaching</a>
-<a href="#contact">Contact</a>
-</div>
-
-</nav>
-</div>
-</header>
-
-<section class="hero">
-
-<div class="container">
-
-<div class="hero-content">
-
-<div class="profile-container">
-
-<img src="https://via.placeholder.com/600"
-class="profile-img"
-alt="Profile">
-
-<a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ"
-target="_blank"
-class="scholar-float">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg"
-alt="Scholar">
-
-</a>
-
-</div>
-
-<div class="hero-text">
-
-<h1>Matin Roosta</h1>
-
-<h2>PhD Candidate in Nursing | Faculty Member</h2>
-
-<p>
-Researcher in Critical Care Nursing, Emergency Medicine,
-Evidence-Based Practice, Systematic Reviews, Meta-analysis,
-and Healthcare Innovation.
-</p>
-
-<div class="btns">
-
-<a href="#" class="btn primary">
-Google Scholar
-</a>
-
-<a href="#publications" class="btn secondary">
-Publications
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="about">
-
-<div class="container">
-
-<h2 class="section-title">About Me</h2>
-
-<div class="about">
-
-I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My research interests include Critical Care Nursing, Emergency Medicine, Evidence-Based Healthcare, Systematic Reviews, Meta-analysis, and AI in Healthcare.
-
-</div>
-
-</div>
-
-</section>
-
-<section id="research">
-
-<div class="container">
-
-<h2 class="section-title">Research Interests</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Critical Care Nursing</h3>
-<p>ICU, CCU and advanced patient care research.</p>
-</div>
-
-<div class="card">
-<h3>Emergency Medicine</h3>
-<p>Prehospital emergency care and response systems.</p>
-</div>
-
-<div class="card">
-<h3>Systematic Reviews</h3>
-<p>Evidence synthesis and methodological research.</p>
-</div>
-
-<div class="card">
-<h3>Artificial Intelligence</h3>
-<p>AI applications in nursing and healthcare.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="publications">
-
-<div class="container">
-
-<h2 class="section-title">Selected Publications</h2>
-
-<div class="pub">
-<h4>Your Article Title</h4>
-<p>Journal Name • 2025</p>
-</div>
-
-<div class="pub">
-<h4>Your Article Title</h4>
-<p>Journal Name • 2024</p>
-</div>
-
-<div class="pub">
-<h4>Your Article Title</h4>
-<p>Journal Name • 2023</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="teaching">
-
-<div class="container">
-
-<h2 class="section-title">Teaching</h2>
-
-<div class="cards">
-
-<div class="card"><h3>ICU Nursing</h3></div>
-<div class="card"><h3>CCU Nursing</h3></div>
-<div class="card"><h3>Dialysis Nursing</h3></div>
-<div class="card"><h3>Emergency Care</h3></div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<div class="container">
-
-<h2 class="section-title">Contact</h2>
-
-<div class="about">
-
-<p>Email: your-email@university.edu</p>
-
-<div class="socials">
-
-<a href="#">Google Scholar</a>
-<a href="#">ORCID</a>
-<a href="#">ResearchGate</a>
-<a href="#">LinkedIn</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-<p>© 2026 Matin Roosta. All Rights Reserved.</p>
-</footer>
+    <!-- هدر -->
+    <header>
+        <div class="logo">Matin Roosta</div>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#teaching">Teaching</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- بخش اصلی (Hero) -->
+    <section class="hero">
+        
+        <!-- نیمه سمت چپ -->
+        <div class="content-left">
+            <div class="badge">PhD Candidate · Faculty Member</div>
+            
+            <!-- عنوان اصلی - مشابه عکس با رنگ آبی -->
+            <h1>The science of <span class="highlight">care</span><br>and evidence.</h1>
+            
+            <p class="description">
+                I am a researcher in Critical Care Nursing, Emergency Medicine, Evidence-Based Practice, Systematic Reviews, Meta-analysis, and Healthcare Innovation.
+            </p>
+            
+            <div class="buttons">
+                <!-- لینک اسکولار شما اینجا قرار داده شد -->
+                <a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ" target="_blank" class="btn btn-primary">
+                    Google Scholar <span>&rarr;</span>
+                </a>
+                <a href="#publications" class="btn btn-secondary">Publications</a>
+            </div>
+        </div>
+
+        <!-- نیمه سمت راست (عکس) -->
+        <div class="image-right">
+            <!-- عکس از طریق CSS (کلاس image-right) اعمال شده و سیاه و سفید می شود -->
+        </div>
+
+    </section>
+
+    <!-- بخش درباره من -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I am a PhD candidate in Nursing and a faculty member in the Department of Prehospital Emergency Medicine. My research interests include Critical Care Nursing, Emergency Medicine, Evidence-Based Healthcare, Systematic Reviews, Meta-analysis, and AI in Healthcare.
+            </p>
+        </div>
+    </section>
+
+    <!-- بخش پژوهش ها -->
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Critical Care Nursing</h3>
+                    <p>ICU, CCU and advanced patient care research.</p>
+                </div>
+                <div class="card">
+                    <h3>Emergency Medicine</h3>
+                    <p>Prehospital emergency care and response systems.</p>
+                </div>
+                <div class="card">
+                    <h3>Systematic Reviews</h3>
+                    <p>Evidence synthesis and methodological research.</p>
+                </div>
+                <div class="card">
+                    <h3>Artificial Intelligence</h3>
+                    <p>AI applications in nursing and healthcare.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش مقالات -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Selected Publications</h2>
+            <div class="pub">
+                <h4>Your Article Title</h4>
+                <p>Journal Name • 2025</p>
+            </div>
+            <div class="pub">
+                <h4>Your Article Title</h4>
+                <p>Journal Name • 2024</p>
+            </div>
+            <div class="pub">
+                <h4>Your Article Title</h4>
+                <p>Journal Name • 2023</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تدریس -->
+    <section id="teaching">
+        <div class="container">
+            <h2 class="section-title">Teaching</h2>
+            <div class="cards">
+                <div class="card"><h3>ICU Nursing</h3></div>
+                <div class="card"><h3>CCU Nursing</h3></div>
+                <div class="card"><h3>Dialysis Nursing</h3></div>
+                <div class="card"><h3>Emergency Care</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تماس و فوتر -->
+    <section id="contact" style="border-bottom: none;">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="about-text">
+                <p style="font-weight: 600;">Email: your-email@university.edu</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Matin Roosta. All Rights Reserved.</p>
+        <div class="socials">
+            <a href="https://scholar.google.com/citations?hl=en&user=ZGdhd8QAAAAJ" target="_blank">Google Scholar</a>
+            <a href="#">ORCID</a>
+            <a href="#">ResearchGate</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
 
 </body>
 </html>
