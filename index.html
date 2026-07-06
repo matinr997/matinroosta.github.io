@@ -182,12 +182,12 @@
             background-position: center top;
             filter: grayscale(100%); 
             display: flex;
-            align-items: flex-end; /* فرستادن نوار به پایین */
+            align-items: flex-end;
         }
 
         .image-caption {
             width: 100%;
-            background-color: rgba(30, 30, 35, 0.92); /* نوار تیره نیمه‌شفاف */
+            background-color: rgba(30, 30, 35, 0.92); 
             color: #fff;
             padding: 10px 30px;
             font-size: 0.9rem;
@@ -284,42 +284,98 @@
             display: inline-block;
         }
 
-        /* مقالات */
+        /* ========================================= */
+        /* ----- طراحی جدید بخش مقالات (تعاملی) ----- */
+        /* ========================================= */
+        .pub-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
         .pub {
-            border: 2px solid #111;
-            padding: 35px;
-            margin-bottom: 20px;
-            transition: all 0.3s;
             background: #fff;
+            border: 2px solid #111;
+            padding: 35px 40px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
         }
         
         .pub:hover {
-            border-left: 8px solid #2548ff;
-            transform: translateX(5px);
+            border-color: #2548ff;
+            box-shadow: 0 20px 40px rgba(37, 72, 255, 0.1);
+            transform: translateY(-5px);
         }
 
         .pub h4 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
             line-height: 1.5;
+            color: #111;
+            transition: color 0.3s;
         }
 
-        .pub p {
-            color: #555;
-            font-size: 0.95rem;
-        }
-        
-        .doi-link {
+        .pub:hover h4 {
             color: #2548ff;
+        }
+
+        /* چکیده مقاله - در حالت عادی مخفی است */
+        .pub-abstract {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        /* نمایش چکیده وقتی روی مقاله هاور میشود */
+        .pub:hover .pub-abstract {
+            max-height: 500px; /* فضای کافی برای چکیده */
+            opacity: 1;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+        }
+
+        .pub-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .pub-date {
+            font-weight: 600;
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .doi-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #111;
             text-decoration: none;
             font-weight: 600;
-            transition: opacity 0.3s;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border: 1px solid #111;
+            transition: all 0.3s;
         }
         
-        .doi-link:hover {
-            opacity: 0.7;
+        .doi-btn:hover {
+            background-color: #2548ff;
+            color: #fff;
+            border-color: #2548ff;
         }
+
+        /* ========================================= */
 
         /* کارت های تدریس */
         .cards {
@@ -434,19 +490,8 @@
             .buttons { flex-direction: column; width: 100%; gap: 10px; }
             .btn { width: 100%; }
             
-            /* تنظیمات عکس برای موبایل */
-            .image-right { 
-                width: 100%; 
-                min-height: 450px; 
-                background-position: center 20%; 
-            }
-            
-            /* تنظیمات کپشن عکس در موبایل */
-            .image-caption {
-                padding: 15px 20px;
-                font-size: 0.9rem;
-                text-align: center;
-            }
+            .image-right { width: 100%; min-height: 450px; background-position: center 20%; }
+            .image-caption { padding: 15px 20px; font-size: 0.9rem; text-align: center; }
             
             .container { padding: 40px 20px; }
             .section-title { font-size: 2.2rem; margin-bottom: 30px; }
@@ -458,6 +503,7 @@
             
             .pub { padding: 25px 20px; }
             .pub h4 { font-size: 1.1rem; }
+            .pub-footer { flex-direction: column; align-items: flex-start; gap: 15px; }
             
             footer { flex-direction: column; padding: 40px 20px; gap: 40px; }
             .brand-col p { font-size: 1rem; }
@@ -475,15 +521,12 @@
                 <a href="#publications">Publications</a>
                 <a href="#teaching">Teaching</a>
             </nav>
-            <!-- دکمه تغییر زبان -->
             <a href="index-fa.html" class="lang-toggle" title="Persian">FA</a>
         </div>
     </header>
 
     <!-- بخش اصلی (Hero) -->
     <section class="hero">
-        
-        <!-- نیمه سمت چپ -->
         <div class="content-left">
             <div class="badge">Faculty Member</div>
             
@@ -501,13 +544,11 @@
             </div>
         </div>
 
-        <!-- نیمه سمت راست (عکس و کپشن) -->
         <div class="image-right">
             <div class="image-caption">
-                Matin Roosta-ye Abkenar — Faculty Member of Nursing and Midwifary school
+                Matin Roosta-ye Abkenar — Faculty Member of Nursing and Midwifery school
             </div>
         </div>
-
     </section>
 
     <!-- بخش پژوهش ها -->
@@ -575,14 +616,31 @@
 
     </section>
 
-    <!-- بخش مقالات -->
+    <!-- بخش مقالات (تعاملی با نمایش چکیده) -->
     <section id="publications">
         <div class="container">
             <h2 class="section-title">Research Papers</h2>
             
-            <div class="pub">
-                <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
-                <p>DOI: <a href="https://doi.org/10.17533/udea.iee.v43n1e05" target="_blank" class="doi-link">10.17533/udea.iee.v43n1e05</a></p>
+            <div class="pub-container">
+                <!-- مقاله 1 -->
+                <div class="pub">
+                    <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
+                    
+                    <!-- چکیده مقاله که با هاور کردن نمایان میشود -->
+                    <div class="pub-abstract">
+                        <strong>Abstract:</strong> This study investigated the effect of a self-care educational program based on Peplau's interpersonal relations theory on treatment adherence and self-care behaviors in elderly diabetic patients. The findings demonstrate that implementing theoretically grounded educational interventions significantly improves self-management capabilities, leading to better glycemic control and enhanced quality of life in geriatric populations.
+                    </div>
+                    
+                    <!-- بخش پایینی مقاله شامل تاریخ و دکمه DOI -->
+                    <div class="pub-footer">
+                        <span class="pub-date">Investigación y Educación en Enfermería • 2025</span>
+                        <a href="https://doi.org/10.17533/udea.iee.v43n1e05" target="_blank" class="doi-btn">
+                            Read Paper ↗
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- میتوانید مقالات بعدی را دقیقا با همین الگو در اینجا اضافه کنید -->
             </div>
             
         </div>
@@ -600,7 +658,7 @@
         </div>
     </section>
 
-    <!-- فوتر -->
+    <!-- فوتر با اضافه شدن آیکون ایمیل -->
     <footer>
         <div class="footer-col brand-col">
             <h2>MATIN ROOSTA</h2>
@@ -617,6 +675,12 @@
         <div class="footer-col social-col">
             <span class="footer-heading">ELSEWHERE</span>
             
+            <!-- لینک ایمیل اضافه شد -->
+            <a href="mailto:matinr1997@gmail.com">
+                <svg viewBox="0 0 24 24" fill="#111" width="20" height="20"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Email &#8599;
+            </a>
+
             <a href="https://www.linkedin.com/in/matin-roosta-ye-abkenar-54318622a/" target="_blank">
                 <svg viewBox="0 0 24 24" fill="#111" width="20" height="20"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 LinkedIn &#8599;
