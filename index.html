@@ -27,6 +27,27 @@
             line-height: 1.6;
         }
 
+        /* ========================================= */
+        /* ----- Scroll Progress Bar (نوار اسکرول سمت چپ) ----- */
+        /* ========================================= */
+        .scroll-progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 5px; /* ضخامت نوار */
+            height: 100vh;
+            background: transparent; /* پس زمینه نامرئی */
+            z-index: 9999; /* بالاتر از همه چیز قرار میگیرد */
+        }
+        
+        .scroll-progress-bar {
+            height: 0%;
+            width: 100%;
+            background: linear-gradient(to bottom, #8fa3ff, #2548ff); /* گرادیان آبی جذاب */
+            box-shadow: 2px 0 10px rgba(37, 72, 255, 0.5); /* سایه درخشان */
+            border-radius: 0 0 5px 0; /* گرد کردن لبه پایینی */
+        }
+
         /* ----- Header & Nav ----- */
         header {
             position: fixed;
@@ -388,7 +409,7 @@
             border-color: #2548ff;
         }
 
-        /* ----- Teaching Section (Standard) ----- */
+        /* ----- Teaching Section ----- */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -521,6 +542,11 @@
 </head>
 <body>
 
+    <!-- نوار اسکرول -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="myProgressBar"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="logo">Matin Roosta</div>
@@ -635,6 +661,7 @@
                 <div class="pub">
                     <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
                     
+                    <!-- Structured Abstract -->
                     <div class="pub-abstract">
                         <p><strong>Abstract</strong></p>
                         <p><strong>Objective.</strong> To examine the impact of a self-care program designed using Peplau's theory on adherence and self-care in elderly diabetic patients.</p>
@@ -716,6 +743,16 @@
             
         </div>
     </footer>
+
+    <!-- کدهای جاوااسکریپت برای نوار اسکرول -->
+    <script>
+        window.onscroll = function() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myProgressBar").style.height = scrolled + "%";
+        };
+    </script>
 
 </body>
 </html>
