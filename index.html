@@ -6,7 +6,7 @@
     <title>Matin Roosta | Academic Portfolio</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -65,24 +65,90 @@
         }
 
         /* ========================================= */
-        /* ----- Scroll Progress Bar (نوار اسکرول سمت چپ) ----- */
+        /* ----- Scroll-to-Top with Circular Progress ----- */
         /* ========================================= */
-        .scroll-progress-container {
+        .scroll-to-top-btn {
             position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        body.dark-mode .scroll-to-top-btn {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            background-color: var(--card-bg);
+        }
+
+        .scroll-to-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .scroll-to-top-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .scroll-to-top-btn:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .progress-circle {
+            position: absolute;
             top: 0;
             left: 0;
-            width: 5px; 
-            height: 100vh;
-            background: transparent; 
-            z-index: 9999; 
-        }
-        
-        .scroll-progress-bar {
-            height: 0%;
             width: 100%;
-            background: linear-gradient(to bottom, #8fa3ff, var(--accent-blue)); 
-            box-shadow: 2px 0 10px rgba(37, 72, 255, 0.5); 
-            border-radius: 0 0 5px 0; 
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .progress-bg {
+            fill: var(--card-bg);
+            stroke: var(--item-hover-bg);
+            stroke-width: 6px;
+            transition: stroke 0.4s ease, fill 0.4s ease;
+        }
+
+        body.dark-mode .progress-bg {
+            stroke: #2a2a2a;
+        }
+
+        .progress-bar {
+            fill: none;
+            stroke: var(--accent-blue);
+            stroke-width: 6px;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 0.1s linear, stroke 0.4s ease;
+        }
+
+        .arrow-up {
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease, transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .scroll-to-top-btn:hover .arrow-up {
+            color: var(--accent-blue);
+            transform: translateY(-2px);
         }
 
         /* ----- Header & Nav ----- */
@@ -634,9 +700,17 @@
 </head>
 <body>
 
-    <!-- نوار اسکرول -->
-    <div class="scroll-progress-container">
-        <div class="scroll-progress-bar" id="myProgressBar"></div>
+    <!-- دکمه بازگشت به بالا با پیشرفت دایره‌ای -->
+    <div class="scroll-to-top-btn" id="scrollToTopBtn" title="Scroll to Top">
+        <svg class="progress-circle" viewBox="0 0 100 100">
+            <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+            <circle class="progress-bar" cx="50" cy="50" r="45" id="progressCircleBar"></circle>
+        </svg>
+        <div class="arrow-up">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+                <path d="M18 15l-6-6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
     </div>
 
     <!-- Header -->
@@ -847,13 +921,42 @@
 
     <!-- Scripts (اسکرول و دارک مود) -->
     <script>
-        // 1. Scroll Progress Bar
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("myProgressBar").style.height = scrolled + "%";
-        };
+        // 1. Circular Scroll Progress and Scroll-to-Top
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const progressCircleBar = document.getElementById('progressCircleBar');
+        
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            
+            if (height > 0) {
+                const scrolled = (winScroll / height) * 100;
+                
+                // Update circle progress stroke-dashoffset
+                // Circumference = 2 * Math.PI * 45 = 282.743
+                const circumference = 282.743;
+                const offset = circumference - (scrolled / 100) * circumference;
+                if (progressCircleBar) {
+                    progressCircleBar.style.strokeDashoffset = offset;
+                }
+                
+                // Show/hide button based on scroll position
+                if (winScroll > 150) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            }
+        });
+
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
 
         // 2. Dark Mode Toggle
         const themeToggleBtn = document.getElementById('themeToggleBtn');
