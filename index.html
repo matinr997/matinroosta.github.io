@@ -621,7 +621,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* متن آدرس - اضافه شدن justify */
         .brand-col p {
             color: var(--text-light);
             font-size: 1.1rem;
@@ -667,6 +666,20 @@
             fill: var(--accent-blue);
         }
 
+        /* ----- Sub Footer (Copyright Row) ----- */
+        .sub-footer {
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--abstract-border);
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+        }
+
         /* ----- Responsive (Mobile) ----- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
@@ -698,6 +711,8 @@
             
             footer { flex-direction: column; padding: 40px 20px; gap: 40px; }
             .brand-col p { font-size: 1rem; }
+            
+            .sub-footer { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
         }
     </style>
 </head>
@@ -924,6 +939,12 @@
             
         </div>
     </footer>
+
+    <!-- Sub Footer (Copyright Row) -->
+    <div class="sub-footer">
+        <span>© 2026 Matin Roosta</span>
+        <span>Hormozgan University of Medical Sciences, Iran.</span>
+    </div>
 
     <!-- Scripts (اسکرول و دارک مود) -->
     <script>
