@@ -483,6 +483,7 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
+            cursor: pointer; /* باعث می‌شود موس به شکل دست دربیاید */
         }
         
         .pub:hover {
@@ -527,6 +528,8 @@
             transition: all 0.3s;
             flex-shrink: 0; /* Prevent button from shrinking */
             white-space: nowrap; /* Keep text on one line */
+            position: relative;
+            z-index: 10; /* جلوگیری از تداخل کلیک */
         }
         
         .doi-btn:hover {
@@ -535,36 +538,9 @@
             border-color: var(--accent-blue);
         }
 
-        /* Abstract Hidden State */
+        /* Abstract Hidden Storage */
         .pub-abstract {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.6s ease-in-out;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            text-align: justify;
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
-
-        .pub-abstract p {
-            margin-bottom: 12px;
-        }
-        
-        .pub-abstract p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Abstract Visible State on Hover */
-        .pub:hover .pub-abstract {
-            max-height: 1500px;
-            opacity: 1;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--abstract-border);
+            display: none; /* محتوا در اینجا مخفی است و توسط جاوا اسکریپت در مودال نمایش داده می‌شود */
         }
 
         .pub-footer {
@@ -579,6 +555,91 @@
             color: var(--text-light);
             font-size: 0.9rem;
             letter-spacing: 1px;
+        }
+
+        /* ========================================= */
+        /* ----- Modal / Pop-up Styles ----- */
+        /* ========================================= */
+        .modal {
+            visibility: hidden; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            padding: 40px;
+            border: 2px solid var(--border-color);
+            width: 100%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body.dark-mode .modal-content {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            color: var(--text-muted);
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-blue);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .modal-body strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+        }
+        
+        .modal-body p:last-child {
+            margin-bottom: 0;
         }
 
         /* ----- Teaching Section (Standard) ----- */
@@ -735,6 +796,10 @@
             .brand-col p { font-size: 1rem; }
             
             .sub-footer { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
+            
+            /* Mobile adjustments for Modal */
+            .modal-content { padding: 30px 20px; }
+            .close-modal { top: 10px; right: 15px; font-size: 28px; }
         }
     </style>
 </head>
@@ -884,7 +949,7 @@
             
             <div class="pub-container">
                 <!-- Paper 1 -->
-                <div class="pub">
+                <div class="pub" title="Click to view Abstract">
                     <div class="pub-header">
                         <h4>Determining the impact of a self-care educational program designed based on the Peplau theory on adherence to treatment and self-care in elderly patients with diabetes.</h4>
                         <a href="https://doi.org/10.17533/udea.iee.v43n1e05" target="_blank" class="doi-btn">
@@ -892,7 +957,7 @@
                         </a>
                     </div>
                     
-                    <!-- Structured Abstract -->
+                    <!-- Abstract hidden, waiting to be shown in Modal -->
                     <div class="pub-abstract">
                         <p><strong>Abstract</strong></p>
                         <p><strong>Objective.</strong> To examine the impact of a self-care program designed using Peplau's theory on adherence and self-care in elderly diabetic patients.</p>
@@ -980,7 +1045,15 @@
         <span>Hormozgan University of Medical Sciences, Iran.</span>
     </div>
 
-    <!-- Scripts (اسکرول و دارک مود) -->
+    <!-- Modal Background and Content -->
+    <div id="abstractModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" title="Close">&times;</span>
+            <div id="modalBody" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Scripts (اسکرول، دارک مود، مودال) -->
     <script>
         // 1. Circular Scroll Progress and Scroll-to-Top
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
@@ -1010,10 +1083,9 @@
             }
         });
 
-        // رفع مشکل کلیک دکمه بازگشت به بالا
         if (scrollToTopBtn) {
             scrollToTopBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // جلوگیری از رفتارهای پیش فرض که ممکن است تداخل ایجاد کنند
+                e.preventDefault(); 
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -1026,17 +1098,14 @@
         const body = document.body;
         const iconPath = document.getElementById('themeIconPath');
 
-        // مسیر آیکون های SVG
-        const moonIcon = "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"; // هلال ماه
-        const sunIcon = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"; // خورشید
+        const moonIcon = "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"; 
+        const sunIcon = "M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"; 
 
-        // بررسی حافظه مرورگر هنگام لود صفحه
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
             iconPath.setAttribute('d', sunIcon);
         }
 
-        // رویداد کلیک روی دکمه
         themeToggleBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             
@@ -1046,6 +1115,50 @@
             } else {
                 localStorage.setItem('theme', 'light');
                 iconPath.setAttribute('d', moonIcon);
+            }
+        });
+
+        // 3. Abstract Pop-up (Modal) Logic
+        const modal = document.getElementById('abstractModal');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const publications = document.querySelectorAll('.pub');
+
+        publications.forEach(pub => {
+            pub.addEventListener('click', function(e) {
+                // اگر روی دکمه لینک به مقاله کلیک شد، مودال باز نشود
+                if (e.target.closest('.doi-btn')) return;
+
+                // استخراج محتوای چکیده و قرار دادن در مودال
+                const abstractHTML = this.querySelector('.pub-abstract').innerHTML;
+                modalBody.innerHTML = abstractHTML;
+                
+                // نمایش مودال و جلوگیری از اسکرول صفحه پشتی
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // تابع بستن مودال
+        const closeAbstractModal = () => {
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // بازگردانی اسکرول صفحه
+        };
+
+        // بستن با ضربدر
+        closeModalBtn.addEventListener('click', closeAbstractModal);
+
+        // بستن با کلیک بیرون از محتوای مودال (روی پس زمینه تیره)
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeAbstractModal();
+            }
+        });
+
+        // بستن با دکمه Esc کیبورد
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeAbstractModal();
             }
         });
     </script>
