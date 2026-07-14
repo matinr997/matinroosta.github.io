@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matin Roosta | Academic Portfolio</title>
     
-    <!-- Favicon (Fixed Path & Cache Buster added) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/jpeg" href="images/favicon.jpg?v=1">
     <link rel="shortcut icon" type="image/jpeg" href="images/favicon.jpg?v=1">
     
@@ -50,7 +50,7 @@
         }
 
         html {
-            scroll-behavior: smooth; /* اسکرول نرم برای کل صفحه */
+            scroll-behavior: smooth;
         }
 
         * {
@@ -107,10 +107,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        body.dark-mode .scroll-to-top-btn:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-        }
-
         .progress-circle {
             position: absolute;
             top: 0;
@@ -118,7 +114,7 @@
             width: 100%;
             height: 100%;
             transform: rotate(-90deg);
-            pointer-events: none; /* جلوگیری از تداخل کلیک */
+            pointer-events: none;
         }
 
         .progress-bg {
@@ -149,7 +145,7 @@
             justify-content: center;
             transition: color 0.3s ease, transform 0.3s ease;
             z-index: 2;
-            pointer-events: none; /* جلوگیری از تداخل کلیک */
+            pointer-events: none;
         }
 
         .scroll-to-top-btn:hover .arrow-up {
@@ -198,7 +194,6 @@
             color: var(--text-main);
         }
 
-        /* دکمه زبان و دارک مود */
         .header-actions {
             display: flex;
             align-items: center;
@@ -333,7 +328,6 @@
             border: 2px solid var(--text-main);
         }
 
-        /* افکت جذاب برای هاور دکمه (بالا آمدن و سایه آبی) */
         .btn-primary:hover {
             transform: translateY(-6px);
             box-shadow: 0 15px 30px rgba(37, 72, 255, 0.4);
@@ -350,7 +344,7 @@
             background-color: transparent;
             color: var(--text-main);
             border: 2px solid var(--border-color);
-            gap: 10px; /* فاصله بین متن و آیکون */
+            gap: 10px;
         }
 
         .btn-secondary:hover {
@@ -469,7 +463,7 @@
             transform: translateY(-2px);
         }
 
-        /* ----- Publications Section (Interactive) ----- */
+        /* ----- Publications Section ----- */
         .pub-container {
             display: flex;
             flex-direction: column;
@@ -483,7 +477,7 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
-            cursor: pointer; /* باعث می‌شود موس به شکل دست دربیاید */
+            cursor: pointer;
         }
         
         .pub:hover {
@@ -492,7 +486,6 @@
             transform: translateY(-5px);
         }
 
-        /* Container for Title and Button side-by-side */
         .pub-header {
             display: flex;
             justify-content: space-between;
@@ -508,7 +501,7 @@
             line-height: 1.5;
             color: var(--text-main);
             transition: color 0.3s;
-            flex: 1; /* Allow title to take available space */
+            flex: 1;
         }
 
         .pub:hover h4 {
@@ -526,10 +519,10 @@
             padding: 8px 16px;
             border: 1px solid var(--border-color);
             transition: all 0.3s;
-            flex-shrink: 0; /* Prevent button from shrinking */
-            white-space: nowrap; /* Keep text on one line */
+            flex-shrink: 0;
+            white-space: nowrap;
             position: relative;
-            z-index: 10; /* جلوگیری از تداخل کلیک */
+            z-index: 10;
         }
         
         .doi-btn:hover {
@@ -538,9 +531,8 @@
             border-color: var(--accent-blue);
         }
 
-        /* Abstract Hidden Storage */
         .pub-abstract {
-            display: none; /* محتوا در اینجا مخفی است و توسط جاوا اسکریپت در مودال نمایش داده می‌شود */
+            display: none;
         }
 
         .pub-footer {
@@ -558,7 +550,7 @@
         }
 
         /* ========================================= */
-        /* ----- Modal / Pop-up Styles ----- */
+        /* ----- Academic Modal / Pop-up Styles ---- */
         /* ========================================= */
         .modal {
             visibility: hidden; 
@@ -568,8 +560,8 @@
             top: 0;
             width: 100%; 
             height: 100%; 
-            background-color: rgba(0, 0, 0, 0.6); 
-            backdrop-filter: blur(4px);
+            background-color: rgba(0, 0, 0, 0.75); /* کمی تیره‌تر برای تمرکز بهتر */
+            backdrop-filter: blur(5px);
             opacity: 0;
             transition: opacity 0.4s ease, visibility 0.4s ease;
             display: flex;
@@ -584,65 +576,120 @@
         }
 
         .modal-content {
-            background-color: var(--bg-color);
-            padding: 40px;
-            border: 2px solid var(--border-color);
+            background-color: var(--card-bg);
+            border: 1px solid var(--abstract-border); /* بردر ظریف‌تر */
+            border-radius: 8px; /* لبه‌های نرم برای حس مدرن */
             width: 100%;
-            max-width: 800px;
-            max-height: 85vh;
-            overflow-y: auto;
+            max-width: 850px;
+            max-height: 90vh; /* حداکثر ارتفاع برای جلوگیری از خروج از صفحه */
+            display: flex;
+            flex-direction: column;
             position: relative;
-            transform: translateY(20px);
+            transform: translateY(20px) scale(0.98);
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.4s ease, border-color 0.4s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden; /* مخفی کردن بیرون زدگی، اسکرول در بادی انجام میشود */
         }
 
         body.dark-mode .modal-content {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border-color: var(--border-color);
         }
 
         .modal.show .modal-content {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
+        /* بخش هدر مودال */
+        .modal-header {
+            padding: 25px 40px;
+            border-bottom: 1px solid var(--abstract-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--item-hover-bg);
+        }
+
+        .modal-header h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .modal-header h3 svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--accent-blue);
+        }
+
+        /* دکمه بستن حرفه‌ای */
         .close-modal {
             color: var(--text-muted);
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 32px;
-            font-weight: 300;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
             cursor: pointer;
-            transition: color 0.3s, transform 0.3s;
-            line-height: 1;
+            transition: all 0.3s ease;
+            background: transparent;
         }
 
         .close-modal:hover {
-            color: var(--accent-blue);
-            transform: scale(1.1);
+            color: var(--bg-color);
+            background-color: var(--text-main);
+            transform: rotate(90deg); /* افکت چرخش جذاب */
         }
 
+        /* بخش متن چکیده */
         .modal-body {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.8;
+            padding: 40px;
+            overflow-y: auto; /* اسکرول داخلی */
+            color: var(--text-light);
+            font-size: 1.05rem; /* سایز فونت مناسب خواندن */
+            line-height: 1.85; /* فاصله خطوط استاندارد مقالات */
             text-align: justify;
         }
-        
-        .modal-body strong {
-            color: var(--text-main);
-            font-weight: 700;
+
+        /* استایل اسکرول‌بار اختصاصی داخل مودال */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--abstract-border);
+            border-radius: 4px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-blue);
         }
 
+        /* استایل کلمات کلیدی داخل چکیده (Objective, Methods, ...) */
         .modal-body p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .modal-body p:last-child {
             margin-bottom: 0;
         }
 
-        /* ----- Teaching Section (Standard) ----- */
+        .modal-body strong {
+            color: var(--text-main);
+            font-weight: 800;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        /* ----- Teaching Section ----- */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -748,7 +795,7 @@
             fill: var(--accent-blue);
         }
 
-        /* ----- Sub Footer (Copyright Row) ----- */
+        /* ----- Sub Footer ----- */
         .sub-footer {
             padding: 25px 50px;
             display: flex;
@@ -798,14 +845,13 @@
             .sub-footer { flex-direction: column; text-align: center; gap: 15px; padding: 25px 20px; }
             
             /* Mobile adjustments for Modal */
-            .modal-content { padding: 30px 20px; }
-            .close-modal { top: 10px; right: 15px; font-size: 28px; }
+            .modal-header { padding: 20px; }
+            .modal-body { padding: 20px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- دکمه بازگشت به بالا با پیشرفت دایره‌ای -->
     <div class="scroll-to-top-btn" id="scrollToTopBtn" title="Scroll to Top">
         <svg class="progress-circle" viewBox="0 0 100 100">
             <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
@@ -828,9 +874,7 @@
                 <a href="#teaching">Teaching</a>
             </nav>
             <div class="header-actions">
-                <!-- دکمه دارک مود -->
                 <button class="theme-toggle" id="themeToggleBtn" title="Toggle Dark Mode">
-                    <!-- پیش فرض: آیکون ماه -->
                     <svg id="themeIcon" viewBox="0 0 24 24">
                         <path id="themeIconPath" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
@@ -856,7 +900,6 @@
                     Google Scholar <span>&rarr;</span>
                 </a>
                 
-                <!-- دکمه جدید CV با آیکون -->
                 <a href="Matin_Roosta_CV.pdf" target="_blank" class="btn btn-secondary">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -879,7 +922,6 @@
 
     <!-- Research Section -->
     <section id="research">
-        
         <div class="research-item">
             <div class="research-left">
                 <span class="research-num">01 / CARE</span>
@@ -939,7 +981,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 
     <!-- Publications Section -->
@@ -957,9 +998,8 @@
                         </a>
                     </div>
                     
-                    <!-- Abstract hidden, waiting to be shown in Modal -->
+                    <!-- Abstract hidden (Note: "Abstract" title removed as it is now in modal header) -->
                     <div class="pub-abstract">
-                        <p><strong>Abstract</strong></p>
                         <p><strong>Objective.</strong> To examine the impact of a self-care program designed using Peplau's theory on adherence and self-care in elderly diabetic patients.</p>
                         
                         <p><strong>Methods.</strong> This semi-experimental study involved 102 elderly diabetic patients from a diabetes clinic in Hormoz, Iran, in 2023. Participants were randomly allocated to either the control group (n=51) or the intervention group (n=51). Before and two weeks after the intervention, participants completed a demographic information questionnaire, the Modanloo Adherence to Treatment Questionnaire for Patients with Chronic Illness, and the Summary of Diabetes Self-Care Activities Scale. The intervention group received a self-care educational program based on Peplau's therapeutic communication theory, delivered in three phases: orientation, working, and termination. The program focused on key diabetes self-care factors including diet, medication adherence, physical activity, blood sugar monitoring, and foot care. Educational sessions were conducted in small groups or individually in the clinic’s education room. The control group received routine educational content provided by the diabetes clinic.</p>
@@ -979,7 +1019,7 @@
         </div>
     </section>
 
-    <!-- Teaching Section (Standard) -->
+    <!-- Teaching Section -->
     <section id="teaching">
         <div class="container">
             <h2 class="section-title">Teaching</h2>
@@ -1010,7 +1050,6 @@
         <div class="footer-col social-col">
             <span class="footer-heading">ELSEWHERE</span>
             
-            <!-- Email -->
             <a href="mailto:matinr1997@gmail.com">
                 <svg viewBox="0 0 24 24" width="20" height="20"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 Email &#8599;
@@ -1039,23 +1078,43 @@
         </div>
     </footer>
 
-    <!-- Sub Footer (Copyright Row) -->
+    <!-- Sub Footer -->
     <div class="sub-footer">
         <span>© 2026 Matin Roosta</span>
         <span>Hormozgan University of Medical Sciences, Iran.</span>
     </div>
 
-    <!-- Modal Background and Content -->
+    <!-- Academic Modal Background and Content -->
     <div id="abstractModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal" title="Close">&times;</span>
+            <!-- Modal Header (Academic Design) -->
+            <div class="modal-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <line x1="10" y1="9" x2="8" y2="9"></line>
+                    </svg>
+                    Structured Abstract
+                </h3>
+                <div class="close-modal" title="Close">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Modal Body (Content injected here) -->
             <div id="modalBody" class="modal-body"></div>
         </div>
     </div>
 
-    <!-- Scripts (اسکرول، دارک مود، مودال) -->
+    <!-- Scripts -->
     <script>
-        // 1. Circular Scroll Progress and Scroll-to-Top
+        // 1. Scroll Progress
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         const progressCircleBar = document.getElementById('progressCircleBar');
         
@@ -1065,16 +1124,12 @@
             
             if (height > 0) {
                 const scrolled = (winScroll / height) * 100;
-                
-                // Update circle progress stroke-dashoffset
-                // Circumference = 2 * Math.PI * 45 = 282.743
                 const circumference = 282.743;
                 const offset = circumference - (scrolled / 100) * circumference;
                 if (progressCircleBar) {
                     progressCircleBar.style.strokeDashoffset = offset;
                 }
                 
-                // Show/hide button based on scroll position
                 if (winScroll > 150) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
@@ -1118,7 +1173,7 @@
             }
         });
 
-        // 3. Abstract Pop-up (Modal) Logic
+        // 3. Academic Modal Logic
         const modal = document.getElementById('abstractModal');
         const modalBody = document.getElementById('modalBody');
         const closeModalBtn = document.querySelector('.close-modal');
@@ -1126,36 +1181,30 @@
 
         publications.forEach(pub => {
             pub.addEventListener('click', function(e) {
-                // اگر روی دکمه لینک به مقاله کلیک شد، مودال باز نشود
                 if (e.target.closest('.doi-btn')) return;
 
-                // استخراج محتوای چکیده و قرار دادن در مودال
                 const abstractHTML = this.querySelector('.pub-abstract').innerHTML;
                 modalBody.innerHTML = abstractHTML;
                 
-                // نمایش مودال و جلوگیری از اسکرول صفحه پشتی
+                // Show modal, prevent body scroll
                 modal.classList.add('show');
                 document.body.style.overflow = 'hidden';
             });
         });
 
-        // تابع بستن مودال
         const closeAbstractModal = () => {
             modal.classList.remove('show');
-            document.body.style.overflow = ''; // بازگردانی اسکرول صفحه
+            document.body.style.overflow = ''; // Restore body scroll
         };
 
-        // بستن با ضربدر
         closeModalBtn.addEventListener('click', closeAbstractModal);
 
-        // بستن با کلیک بیرون از محتوای مودال (روی پس زمینه تیره)
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 closeAbstractModal();
             }
         });
 
-        // بستن با دکمه Esc کیبورد
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && modal.classList.contains('show')) {
                 closeAbstractModal();
