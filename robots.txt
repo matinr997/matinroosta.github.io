@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://matinr997.github.io/matinroosta.github.io/sitemap.xml
+Sitemap: https://matin-academic-next-nkah.vercel.app/sitemap.xml
